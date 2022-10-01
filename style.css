@@ -1,0 +1,11 @@
+.main{
+  display: grid;
+  place-items: center;
+
+}
+#vortex{
+  border:1px solid gray;
+}
+.form-item{
+  width:5rem
+}
