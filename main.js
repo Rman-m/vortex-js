@@ -9,10 +9,13 @@ const selectors = {
 const {x, y, r} = {
   x: 250,
   y: 250,
-  r: 50
+  r: 200
 }
 
 const ctx = selectors.canvas.getContext('2d');
+
+
+ctx.fillStyle ="#547"
 const endPoints = new Map()
 console.log(ctx)
 
@@ -48,7 +51,9 @@ function drawCircle(multiplier){
 function createIndexes(){
   let dotsCordinates = []
   let numbersCordinates = []
+  console.log();
   endPoints.forEach((endPoint, index )=> {
+   if((selectors.multiplier.valueAsNumber > 100) && (index % 10 !== 0 )) return
     dotsCordinates.push(findEndPoints(endPoint))
     numbersCordinates.push([findEndPoints(endPoint, r+12), index])
   })
@@ -112,10 +117,7 @@ function createVortex(){
   drawCircle(selectors.multiplier.valueAsNumber)
 }
 
-selectors.multiplier.addEventListener("input",()=>{
-  createVortex()
-})
-selectors.modulus.addEventListener("input", ()=> {
-  createVortex()
-})
+selectors.multiplier.addEventListener("input",createVortex)
+selectors.modulus.addEventListener("input", createVortex)
 
+createVortex()
